@@ -13,11 +13,11 @@ namespace PracticingPlaywright.src.Flows
 
         public Task LoginWithCredentialsAsync(string email, string password)
         {
-            return steps.RunAsync("Login with given user credentials", async step =>
+            return Steps.RunAsync("Login with given user credentials", async step =>
             {
-                await pages.LoginPage.EnterEmailAsync(email);
-                await pages.LoginPage.EnterPasswordAsync(password);
-                await pages.LoginPage.ClickLoginAsync();
+                await Pages.LoginPage.EnterEmailAsync(email);
+                await Pages.LoginPage.EnterPasswordAsync(password);
+                await Pages.LoginPage.ClickLoginAsync();
             });
         }
     }

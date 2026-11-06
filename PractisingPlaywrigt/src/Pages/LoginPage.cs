@@ -8,7 +8,7 @@ namespace PracticingPlaywright.src.Pages
 {
     public class LoginPage : BasePage
     {
-        public LoginPage(IPage page) : base(page)
+        public LoginPage(IPage page, StepLogger steps) : base(page, steps)
         {
         }
 
@@ -23,17 +23,26 @@ namespace PracticingPlaywright.src.Pages
 
         public async Task EnterEmailAsync(string email)
         {
-            await EmailInput.FillAsync(email);
+            await Steps.RunAsync("FIll in the Email field", async step =>
+            {
+                await EmailInput.FillAsync(email);
+            });
         }
 
         public async Task EnterPasswordAsync(string password)
         {
-            await PasswordInput.FillAsync(password);
+            await Steps.RunAsync("FIll in the Password field", async step =>
+            {
+                await PasswordInput.FillAsync(password);
+            });
         }
 
         public async Task ClickLoginAsync()
         {
-            await LoginButton.ClickAsync();
+            await Steps.RunAsync("Click the Login button", async step =>
+            {
+                await LoginButton.ClickAsync();
+            });
         }
     }
 }

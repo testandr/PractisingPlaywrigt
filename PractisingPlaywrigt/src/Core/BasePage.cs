@@ -8,14 +8,19 @@ namespace PracticingPlaywright.src.Core
     public abstract class BasePage
     {
         protected readonly IPage Page;
+        protected StepLogger Steps { get; }
 
-        protected BasePage(IPage page)
+        protected BasePage(IPage page, StepLogger steps)
         {
             Page = page;
+            Steps = steps;
         }
         public async Task NavigateAsync(string url)
         {
-            await Page.GotoAsync(url);
+            await Steps.RunAsync("Open selected site", async step =>
+            {
+                await Page.GotoAsync(url);
+            });
         }
 
         public async Task ReloadAsync()

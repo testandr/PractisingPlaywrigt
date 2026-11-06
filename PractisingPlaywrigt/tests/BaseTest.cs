@@ -66,7 +66,7 @@ namespace PracticingPlaywright.tests
             Context = await _fixture.CreateContextAsync();
             Page = await Context.NewPageAsync();
 
-            Pages = new PageManager(Page);
+            Pages = new PageManager(Page, Steps);
             AuthFlow = new AuthFlow(Pages, Steps);
         }
 

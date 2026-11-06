@@ -14,14 +14,8 @@ public class LoginTests : BaseTest
     [Fact]
     public async Task Login_WithValidCredentials_ShouldOpenDashboard()
     {
-        await Steps.RunAsync("Open selected site", async step =>
-        {
-            await Pages.LoginPage.NavigateAsync($"{BaseUrl}/login");
-
-        });
-
+        await Pages.LoginPage.NavigateAsync($"{BaseUrl}/login");
         await AuthFlow.LoginWithCredentialsAsync(email: "amiheev+5@urchinsys.com", password: "EM#@YgnHy8");
-      
         await Steps.RunAsync("Check page title", async step =>
         {
             var title = await Page.TitleAsync();

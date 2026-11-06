@@ -1,4 +1,5 @@
 ﻿using Microsoft.Playwright;
+using PracticingPlaywright.src.Core;
 using PracticingPlaywright.src.Pages;
 using System;
 using System.Collections.Generic;
@@ -9,10 +10,12 @@ namespace PracticingPlaywright.src
     public class PageManager
     {
         public LoginPage LoginPage { get; }
+        protected StepLogger Steps { get; }
 
-        public PageManager(IPage page)
+        public PageManager(IPage page, StepLogger steps)
         {
-            LoginPage = new LoginPage(page);
+            Steps = steps;
+            LoginPage = new LoginPage(page, steps);
         }
     }
 }
