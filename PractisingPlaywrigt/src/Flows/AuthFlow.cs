@@ -1,22 +1,24 @@
-﻿using System;
+﻿using PracticingPlaywright.src.Core;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace PracticingPlaywright.src.Flows
 {
-    public class AuthFlow
+    public class AuthFlow : BaseFlow
     {
-        private readonly PageManager Pages;
-
-        public AuthFlow(PageManager pages)
+        public AuthFlow(PageManager pages, StepLogger steps): base(pages, steps)
         {
-            Pages = pages;
         }
-        public async Task LoginAsync(string email, string password)
+
+        public Task LoginWithCredentialsAsync(string email, string password)
         {
-            await Pages.LoginPage.EnterEmailAsync(email);
-            await Pages.LoginPage.EnterPasswordAsync(password);
-            await Pages.LoginPage.ClickLoginAsync();
+            return steps.RunAsync("Login with given user credentials", async step =>
+            {
+                await pages.LoginPage.EnterEmailAsync(email);
+                await pages.LoginPage.EnterPasswordAsync(password);
+                await pages.LoginPage.ClickLoginAsync();
+            });
         }
     }
 }

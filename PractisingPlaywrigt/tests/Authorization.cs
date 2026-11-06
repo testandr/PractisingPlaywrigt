@@ -20,11 +20,8 @@ public class LoginTests : BaseTest
 
         });
 
-        await Steps.RunAsync("Auth with user", async step =>
-        {
-            await AuthFlow.LoginAsync(email: "amiheev+5@urchinsys.com", password: "EM#@YgnHy8");
-        });
-
+        await AuthFlow.LoginWithCredentialsAsync(email: "amiheev+5@urchinsys.com", password: "EM#@YgnHy8");
+      
         await Steps.RunAsync("Check page title", async step =>
         {
             var title = await Page.TitleAsync();

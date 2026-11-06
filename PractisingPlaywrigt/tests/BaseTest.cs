@@ -67,7 +67,7 @@ namespace PracticingPlaywright.tests
             Page = await Context.NewPageAsync();
 
             Pages = new PageManager(Page);
-            AuthFlow = new AuthFlow(Pages);
+            AuthFlow = new AuthFlow(Pages, Steps);
         }
 
         public async ValueTask DisposeAsync()
